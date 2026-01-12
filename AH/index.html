@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AH Car Wash & Coffee</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              wash: "#0ea5e9",
+              coffee: "#78350f",
+              dark: "#0f172a",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="bg-gradient-to-b from-slate-100 to-slate-200 text-gray-800">
+    <!-- MUSIC -->
+    <audio id="bgMusic" loop>
+      <source
+        src="Asset/Audio/Powfu - death bed (coffee for your head) (Official Video) ft. beabadoobee.mp3"
+        type="audio/mp3"
+      />
+    </audio>
+    <button
+      onclick="toggleMusic()"
+      class="fixed bottom-6 right-6 bg-wash text-white px-4 py-2 rounded-full shadow-lg"
+    >
+      🎵
+    </button>
+
+    <!-- HERO -->
+    <section
+      class="min-h-screen flex flex-col justify-center items-center text-center px-6 bg-gradient-to-b from-dark to-slate-900 text-white"
+    >
+      <p class="text-sm tracking-widest uppercase text-sky-300">
+        Undangan Grand Opening
+      </p>
+
+      <h1 class="text-4xl md:text-5xl font-bold mt-3 text-sky-400">
+        AH Car Wash & Coffee
+      </h1>
+
+      <p class="mt-4 text-slate-300 italic">
+        Clean Your Car, Enjoy Your Coffee
+      </p>
+
+      <!-- SALAM -->
+      <div class="mt-8 max-w-xl text-slate-200">
+        <p class="mb-2">Kepada Yth.</p>
+        <p id="guestName" class="text-xl font-semibold text-sky-300">
+          Tamu Undangan
+        </p>
+        <p class="mt-4 text-sm leading-relaxed">
+          Dengan penuh rasa syukur, kami mengundang Bapak/Ibu/Saudara/i untuk
+          berkenan hadir dan menjadi bagian dari momen pembukaan usaha kami.
+        </p>
+      </div>
+    </section>
+
+    <!-- COUNTDOWN -->
+    <section class="py-16 px-4">
+      <div
+        class="max-w-xl mx-auto bg-white rounded-3xl shadow-xl p-8 text-center"
+      >
+        <h2 class="text-2xl font-semibold text-dark mb-6">
+          Menuju Grand Opening
+        </h2>
+
+        <div id="countdown" class="grid grid-cols-3 gap-4 text-white">
+          <div class="bg-wash rounded-xl py-4">
+            <div id="days" class="text-3xl font-bold">0</div>
+            <div class="text-sm">Hari</div>
+          </div>
+          <div class="bg-coffee rounded-xl py-4">
+            <div id="hours" class="text-3xl font-bold">0</div>
+            <div class="text-sm">Jam</div>
+          </div>
+          <div class="bg-slate-700 rounded-xl py-4">
+            <div id="minutes" class="text-3xl font-bold">0</div>
+            <div class="text-sm">Menit</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DETAIL -->
+    <section class="max-w-xl mx-auto bg-white rounded-3xl p-8 shadow-lg">
+      <h3 class="text-xl font-semibold text-center mb-4">Detail Acara</h3>
+      <div class="space-y-2 text-center">
+        <p><b>📅 Tanggal:</b> 17 Januari 2026</p>
+        <p><b>⏰ Waktu:</b> 10.00 WIB – Selesai</p>
+        <p>
+          <b>📍 Lokasi:</b><br />
+          Jalan Sempurna<br />
+          <span class="text-sm text-gray-500">(Sebelah Perumahan Gas 2)</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="py-16">
+      <h3 class="text-center text-xl font-semibold mb-6">Galeri</h3>
+      <div class="max-w-md mx-auto overflow-hidden rounded-2xl shadow-lg">
+        <img
+          id="slider"
+          src="Asset/Image/gambar1.jpeg"
+          class="w-full h-64 object-cover"
+        />
+      </div>
+    </section>
+
+    <!-- MAP -->
+    <section class="max-w-xl mx-auto px-4 pb-16">
+      <h3 class="text-center text-xl font-semibold mb-6">Lokasi</h3>
+      <iframe
+        class="w-full h-64 rounded-2xl shadow"
+        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3987.195570291527!2d99.84133657496743!3d2.077606597903779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMsKwMDQnMzkuNCJOIDk5wrA1MCczOC4xIkU!5e0!3m2!1sen!2sid!4v1768186595062!5m2!1sen!2sid"
+      >
+      </iframe>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-slate-400 text-center py-6 text-sm">
+      © 2026 AH Car Wash & Coffee • Teknik Informatika Univa 2024
+    </footer>
+
+    <!-- SCRIPT -->
+    <script>
+      /* PERSONAL NAME */
+      const params = new URLSearchParams(window.location.search);
+      const name = params.get("to");
+      if (name) {
+        document.getElementById("guestName").innerText = name;
+      }
+
+      /* COUNTDOWN */
+      const target = new Date("2026-01-17T10:00:00").getTime();
+      setInterval(() => {
+        const now = new Date().getTime();
+        const d = target - now;
+        document.getElementById("days").innerText = Math.floor(
+          d / (1000 * 60 * 60 * 24)
+        );
+        document.getElementById("hours").innerText = Math.floor(
+          (d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        document.getElementById("minutes").innerText = Math.floor(
+          (d % (1000 * 60 * 60)) / (1000 * 60)
+        );
+      }, 1000);
+
+      /* SLIDER */
+      const images = ["img1.jpg", "img2.jpg", "img3.jpg"];
+      let i = 0;
+      setInterval(() => {
+        i = (i + 1) % images.length;
+        slider.src = images[i];
+      }, 3000);
+
+      /* MUSIC */
+      function toggleMusic() {
+        const m = document.getElementById("bgMusic");
+        m.paused ? m.play() : m.pause();
+      }
+    </script>
+  </body>
+</html>
